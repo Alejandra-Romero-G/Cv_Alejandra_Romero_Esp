@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plantilla Web</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .sidebar {
+      width: 300px;
+      background-color: #1f2937;
+      color: white;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar button {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: none;
+      background-color: #374151;
+      color: white;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+
+    .sidebar button:hover {
+      background-color: #4b2e83;
+    }
+
+    .content {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    .page {
+      display: none;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #1f2937;
+    }
+
+    .titulo-bienvenida {
+      font-size: 60px;
+      text-align: center;
+      font-family: 'Georgia', cursive;
+      transition: color 0.5s ease;
+      color: #652178;
+      margin-bottom: 50px;
+    }
+
+    .sobre-mi-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: -20px;
+    }
+
+    .sobre-mi-container img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .sobre-mi-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .sobre-mi {
+      max-width: 500px;
+      text-align: justify;
+    }
+
+    .sobre-mi h2 {
+      margin-bottom: 15px;
+      color: #531962;
+    }
+
+    .subtitulo-personalidad {
+      color: #361856;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+.cv-section {
+ background: white;
+ padding: 50px 20px;
+}
+
+.cv-container {
+  max-width: 1100px;
+  margin: auto;
+  background: white;
+  padding: 40px;
+}
+
+    .cv-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    .cv-logo {
+      border: 3px solid #444;
+      padding: 20px;
+      font-size: 40px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .cv-title h1 {
+      font-size: 55px;
+      color: #2d3748;
+    }
+
+    .cv-photo img {
+      width: 150px;
+      border-radius: 15px;
+      border: 3px solid #444;
+    }
+
+    .cv-block {
+      margin-bottom: 40px;
+    }
+
+    .cv-block h2 {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      color: #2d3748;
+    }
+
+    .cv-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .cv-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .cv-item .date {
+      color: #555;
+      font-weight: bold;
+    }
+
+    .cv-item li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      color: #444;
+    }
+    .cv-item h3 {
+      margin-bottom: 8px;
+      color: #2d3748;
+    }
+
+    .cv-item ul {
+      margin-top: 12px;
+      padding-left: 20px;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .skill-card {
+      flex: 1 1 250px;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 5px solid #1a062f;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 15px;
+      color: #1f2937;
+    }
+
+    .skill-card ul {
+      padding-left: 20px;
+    }
+
+    .skill-card li {
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .cv-download {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .cv-download a {
+      background: #2563eb;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .cv-download a:hover {
+      background: #1d4ed8;
+    }
+    .cover-letter {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.letter-header {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+}
+
+.letter-header h2 {
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.letter-header p {
+  font-weight: bold;
+  color: #4b5563;
+}
+
+.letter-body p {
+  margin-bottom: 22px;
+  text-align: justify;
+  line-height: 1.8;
+}
+
+.firma {
+  margin-top: 40px;
+}
+      </style>
+
+  
+    </head>
+
+    <body>
+
+<!-- MENÚ -->
+<div class="sidebar">
+  <h2>Mi Perfil</h2>
+
+  <button onclick="showPage('inicio')">Inicio</button>
+  <button onclick="showPage('CPresentacion')">Carta de Presentación</button>
+  <button onclick="showPage('cv')">Currículum</button>
+  <button onclick="showPage('contacto')">Contacto y Pag web</button>
+  <button onclick="showPage('habilidades')">Habilidades</button>
+</div>
+
+<!-- CONTENIDO -->
+<div class="content">
+
+  <!-- INICIO -->
+  <div id="inicio" class="page active">
+    <h1 class="titulo-bienvenida">Bienvenido</h1>
+
+    <div class="sobre-mi-container">
+      <img id="fotoPerfil"
+     src="assets/img/foto1.jpg"
+     onclick="cambiarFoto()"
+/>
+
+      <div class="sobre-mi">
+        <h2>Sobre mí</h2>
+
+        <p>
+          Soy una persona dinámica, responsable y creativa, con facilidad para 
+          adaptarme a nuevos entornos y desafíos. Disfruto trabajar en equipo, 
+          aprender constantemente y desarrollar nuevas habilidades tanto a nivel 
+          personal como profesional.<br>
+          Me apasiona explorar nuevas tecnologías y descubrir formas innovadoras de 
+          mejorar mis conocimientos y capacidades.
+        </p>
+
+        <br>
+
+        <h3 class="subtitulo-personalidad">Más sobre mi personalidad</h3>
+
+        <p>
+          Entre mis hobbies destacan el dibujo, la creación de pequeñas animaciones 2D, 
+          la programación, cocinar recetas internacionales, resolver puzzles, además de 
+          coleccionar rocas y piedras preciosas. También disfruto de los videojuegos 
+          como una forma de entretenimiento y creatividad.
+        </p>
+
+        <br>
+
+        <p>
+          Mi curiosidad y pasión por aprender nuevas tecnologías me llevaron a descubrir 
+          un gran interés por el Big Data, Data Science y la Inteligencia Artificial. 
+          Disfruto creando modelos, analizando gráficos y aprendiendo cómo obtener mejores 
+          resultados predictivos mediante el análisis de datos.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HABILIDADES -->
+  <div id="habilidades" class="page">
+    <h1>Habilidades</h1><br>
+     <h3>Competencias </h3><br>
+    <p>
+      • Trabajo en equipo<br>
+      • Comunicación efectiva<br>
+      • Resolución de problemas<br>
+      • Trabajo bajo presión<br>
+      • Apredizaje Continuo<br>
+      • Adaptabilidad
+    </p>
+    <br>
+    <h3>Habilidades Profecionales</h3><br>
+
+    <p>
+      • Python (Spyder, Pycharm, Visual Studio Code)<br>
+      • Jupyter note book <br>
+      • Analisís y visualización de Datos<br>
+      • Limpieza de de Datos<br>
+      • SQL (MySQL, SQLDeveloper)<br>
+      • Java (Eclipse)<br>
+      • Mongodb<br>
+      • Excel<br>
+    </p>
+  </div>
+
+<!-- CONTACTO -->
+<div id="contacto" class="page">
+  <h1>Contacto</h1>
+
+  <p>
+  📍 Ubicación: Madrid, España
+  </p><br>
+
+  <p>
+    Email:
+    <a href="mailto:ale6rom@gmail.com">
+      ale6rom@gmail.com
+    </a></p><br>
+
+  <p>
+    Teléfono:
+    <a href="tel:+34699538307">
+      +34699538307
+    </a></p><br>
+
+  <p>
+    LinkedIn:
+    <a href="https://www.linkedin.com/in/alejandra-romero27" target="_blank">
+      linkedin.com/in/alejandra-romero27
+    </a></p><br>
+
+  <p>
+    GitHub:
+    <a href="https://github.com/Alejandra-Romero-G" target="_blank">
+      github.com/Alejandra-Romero-G
+    </a></p></div>
+
+<!-- CV -->
+<section id="cv" class="page cv-section">
+
+  <div class="cv-container">
+
+  <!-- HEADER -->
+  <div class="cv-header">
+    <div class="cv-logo">MR</div>
+    <div class="cv-title">
+      <h1>M. Alejandra<br>Romero Gutiérrez</h1></div>
+    <div class="cv-photo">
+      <img src="assets/img/foto.jpg" alt="Foto perfil"></div>
+  </div>
+
+  <!-- CONTACTO CV-->
+  <div class="cv-block">
+    <h2>Contacto y Sitios web</h2>
+    <div class="cv-contact-grid"><div>
+      <h3>E-mail</h3>
+      <p>ale6rom@gmail.com</p></div>
+
+    <div>
+      <h3>Teléfono</h3>
+      <p>+34 699533807</p></div>
+    
+    <div>
+    <h3>Dirección</h3>
+    <p>Madrid - España</p></div>
+    </div>
+  </div>
+
+  <!-- ESTUDIOS -->
+  <div class="cv-block">
+    <h2>Estudios</h2>
+
+    <div class="cv-item">
+      <span class="date">2025 - Actualidad</span>
+      <div>
+      <h3>Máster Big Data, Data Science & IA</h3>
+      <p>Universidad Complutense de Madrid</p></div>
+    </div>
+
+    <div class="cv-item">
+      <span class="date">2026-01 - 2026-03</span>
+      <div>
+      <h3>Desarrollo y visualización de datos con Python: Programación</h3>
+      <p>Centro digital de Alcobendas</p></div>
+    </div>
+
+    <div class="cv-item">
+      <span class="date">2025-11 - 2026-01</span>
+      <div>
+      <h3>Curso programación en Java: Programación</h3>
+      <p>Academia grupo Aspacia</p></div>
+    </div>
+
+    <div class="cv-item">
+      <span class="date">2025-05 - 2025-06</span>
+      <div>
+      <h3>Curso de Python: Programación</h3>
+      <p>Universidad Complutense de Madrid</p></div>
+    </div>
+
+    <div class="cv-item">
+      <span class="date">2014-05 - 2019-03</span>
+      <div>
+    <h3>Medicina Veterinaria y Zootecnia</h3>
+    <p>Universidad Autónoma Gabriel René Moreno</p></div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCIA -->
+  <div class="cv-block">
+    <h2>Experiencia laboral</h2>
+
+    <div class="cv-item">
+      <span class="date">2024-02 - 2025-10</span>
+      <div>
+      <h3>Veterinaria</h3>
+      <p>Hospital Veterinario Postas</p>
+      <ul>
+        <li>Registro y mantenimiento de datos clínicos.</li>
+        <li>Control y actualización de historiales médicos electrónicos.</li>
+        <li>Coordinación con equipo clínico para toma de decisiones basadas en datos.</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="cv-item">
+      <span class="date">2022-01 - 2022-08</span>
+      <div>
+        <h3>Analista de Datos</h3>
+        <p>Fundación Ser Fauna</p>
+        <ul>
+          <li>Limpieza y análisis de bases de datos.</li>
+          <li>Detectar patrones y apoyar la toma de decisiones del equipo basado en datos.</li>
+          <li>Corrección de errores, duplicidades e inconsistencias en los datos.</li>
+          <li>Dashboards en Excel.</li>
+        </ul>
+      </div>
+  </div>
+<div class="cv-item">
+  <span class="date">2019-09 - 2021-10</span>
+
+  <div>
+    <h3>Veterinaria Encargada</h3>
+    <p>Play Land SRL (Bioparque), Santa Cruz</p>
+    <ul>
+      <li>Implementación y mantenimiento de registros clínicos para seguimiento de salud animal.</li>
+      <li>Análisis de patrones en evolución clínica y comportamiento poblacional.</li>
+      <li>Organización, validación y corrección de datos clínicos para mejorar la calidad de los registros.</li>
+      <li>Coordinación operativa y supervisión de procesos veterinarios.</li>
+    </ul>
+  </div>
+</div>
+
+  <!-- HABILIDADES -->
+<div class="cv-block">
+  <h2>Habilidades</h2>
+
+  <div class="skills-container">
+
+    <div class="skill-card">
+      <h3>Lenguajes</h3>
+
+      <ul>
+        <li>Python</li>
+        <li>SQL</li>
+        <li>Mongodb</li>
+        <li>HTML</li>
+        <li>Ingles Intermedio</li>
+      </ul>
+    </div>
+
+    <div class="skill-card">
+      <h3>Data Analysis</h3>
+
+      <ul>
+        <li>Limpieza de datos</li>
+        <li>Visualización de Datos</li>
+        <li>Análisis Estadístico</li>
+        <li>Identificación de Patrones</li>
+        <li>Trabajo en equipo y comunicación efectiva</li>
+      </ul>
+    </div>
+
+    <div class="skill-card">
+      <h3>Herramientas</h3>
+
+      <ul>
+        <li>Excel</li>
+        <li>Django</li>
+        <li>MySQL, SQLDeveloper</li>
+        <li>Spark, otras librerias</li>
+        <li>Jupyter Notebook</li>
+      </ul>
+    </div>
+
+  </div>
+</div>  
+
+<!-- DESCARGA -->
+<div class="cv-download">
+      <a href="assets/cv-alejandra-romero.pdf" download>Descargar CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA DE PRESENTACIÓN -->
+<div id="CPresentacion" class="page">
+
+  <div class="cover-letter">
+
+    <h1>Carta de Presentación</h1>
+
+    <div class="letter-header">
+
+      <h2>M. Alejandra Romero Gutierrez</h2>
+
+      <p>
+        Estudiante de Máster en Big Data, Data Science e Inteligencia Artificial
+      </p>
+
+    </div>
+
+    <div class="letter-body">
+      <p>
+        Estimado/a responsable de Selección,
+      </p>
+
+      <p>
+        Escribo esta carta para mostrar mi interés en realizar prácticas en el área de
+        <strong>Big Data, Data Science o Machine Learning</strong>
+        en su organización.
+      </p>
+
+      <p>
+        Actualmente curso el
+        <strong>Máster en Big Data, Data Science e Inteligencia Artificial</strong>
+        en la Universidad Complutense de Madrid, complementando mi formación con
+        proyectos prácticos de análisis y modelado de datos.
+      </p>
+
+      <p>
+        Soy Licenciada en Medicina Veterinaria y tengo experiencia en gestión de
+        datos clínicos, análisis de muestras biológicas y toma de decisiones en
+        entornos exigentes. Esta trayectoria me ha permitido desarrollar
+        pensamiento analítico, atención al detalle y capacidad de adaptación.
+      </p>
+
+      <p>
+        Mi interés por el sector tecnológico surge de una motivación genuina por
+        el análisis de datos y el desarrollo de modelos predictivos orientados a
+        la toma de decisiones.
+      </p>
+
+      <p>
+        Actualmente trabajo con herramientas como
+        <strong>Python, SQL, Java, MongoDB y Tableau</strong>,
+        además de aplicar fundamentos estadísticos y técnicas de Machine Learning
+        en proyectos académicos.
+      </p>
+
+      <p>
+        Considero que mi perfil combina una sólida base científica con nuevas
+        competencias tecnológicas, aportando una visión analítica estructurada y
+        gran capacidad de aprendizaje continuo.
+      </p>
+
+      <p>
+        Me encantaría contribuir a su equipo mientras continúo desarrollando mis
+        habilidades en un entorno profesional real.
+      </p>
+
+      <p>
+        Quedo a disposición para ampliar cualquier información y concertar una
+        entrevista.
+      </p>
+
+      <p class="firma">
+        Atentamente,<br>
+        <strong>M. Alejandra Romero Gutierrez</strong>
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+</div> <!-- cierre de content -->
+<!-- JS -->
+<script>
+function showPage(pageId) {
+  const pages = document.querySelectorAll('.page');
+
+  pages.forEach(page => page.classList.remove('active'));
+
+  document.getElementById(pageId).classList.add('active');
+}
+
+let fotoActual = 1;
+
+function cambiarFoto() {
+  const foto = document.getElementById('fotoPerfil');
+  const titulo = document.querySelector('.titulo-bienvenida');
+
+  if (fotoActual === 1) {
+    foto.src = "assets/img/foto2.jpg";
+
+    titulo.style.color = "#001f3f"; // azul
+
+    fotoActual = 2;
+  } else {
+    foto.src = "assets/img/foto1.jpeg";
+
+    titulo.style.color = "#652178"; // morado original
+
+    fotoActual = 1;
+  }
+}
+</script>
+
+</body>
+</html>
